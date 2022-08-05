@@ -9,11 +9,12 @@ using System.Data.OleDb;
 
 namespace CapaDatos
 {
-    class DatosConexion
+   public class DatosConexion
     {
-        public OleDbConnection conexion;
+        
+        protected OleDbConnection conexion;
 
-        public string cadenaConexion = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source = C:\Users\Ibañez\Desktop\WindFormProd\Productos.accdb";
+        protected string cadenaConexion = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source = C:\Users\Ibañez\Desktop\WindFormProd\Productos.accdb";
 
         public DatosConexion()
         {
@@ -45,6 +46,7 @@ namespace CapaDatos
             {
                 throw new Exception("Se encontro un error al cerrar la conexión", fail);
             }
+             
         }
     }
 }
