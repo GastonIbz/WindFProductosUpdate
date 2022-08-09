@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
+using CapaNegocios;
 
 namespace WindFormProductos
 {
@@ -15,13 +16,36 @@ namespace WindFormProductos
     {
         Producto NuevoProd;
         Producto ProdExistente;
+        NegocioProductos objNegocioProducto = new NegocioProductos();
+
         int Fila;
         bool nuevo = true;
         public FormularioProductos()
         {
             InitializeComponent();
             dgv_Crear();
+            LlenarDGV(); // Trae los datos de la base de datos
+
         }
+
+        private void LlenarDGV()
+        {
+            dgv_Productos.Rows.Clear();
+            DataSet Dset = new DataSet();
+            Dset = objNegocioProducto.listadoProductos("Todos");
+            if (Dset.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow Drow in Dset.Tables[0].Rows)
+                {
+                    dgv_Productos.Rows.Add(Drow[0].ToString(), Drow[1], Drow[2].ToString());
+
+                }
+            }
+            else
+                MessageBox.Show("No se encuentran productos cargados en el sistema");
+
+        }
+
         void dgv_Crear()
         {
             dgv_Productos.Columns.Add("0", "Código");
@@ -31,31 +55,43 @@ namespace WindFormProductos
             dgv_Productos.Columns[0].Width = 170;
             dgv_Productos.Columns[1].Width = 320;
             dgv_Productos.Columns[2].Width = 120;
-        }
-
+        }    
+ 
         // Instanciamos utilizando constructor con parametros / Mostrar datos ingresados en Mov.Productos
         private void btnCargar_Click(object sender, EventArgs e)
         {
+            int nGrabados = -1;
+          
             NuevoProd = new Producto(int.Parse(txtCodigo.Text), txtDescripcion.Text);
-            lblCodigoMov.Text = NuevoProd.p_codigo.ToString();
-            lblDescripMov.Text = NuevoProd.p_descripcion;
-            lblStockmov.Text = "Hay " +  NuevoProd.p_stock.ToString()  + " Unidades";
+            nGrabados = objNegocioProducto.abmProductos("Alta", NuevoProd);
+            if (nGrabados == -1)
+            {
+                MessageBox.Show("No se pudo grabar el producto en el sistema");
+            }
+            else
+            {
 
-          tabC_Productos.SelectedTab = tabP_Movimiento;
-            txb_Movim.Clear();
-            txb_Movim.Focus();
-            MessageBox.Show("Producto Instanciado");
+                lblCodigoMov.Text = NuevoProd.p_codigo.ToString();
+                lblDescripMov.Text = NuevoProd.p_descripcion;
+                lblStockmov.Text = "Hay " + NuevoProd.p_stock.ToString() + " Unidades";
 
-            // Agregar al DGV
-            dgv_Productos.Rows.Add(NuevoProd.p_codigo.ToString(), NuevoProd.p_descripcion.ToString(), NuevoProd.p_stock.ToString());
-            Fila = (dgv_Productos.Rows.Count - 1);
-            nuevo = true;
+                tabC_Productos.SelectedTab = tabP_Movimiento;
+                txb_Movim.Clear();
+                txb_Movim.Focus();
+                MessageBox.Show("Producto Instanciado");
+
+                // Agregar al DGV - Ya no se manda directamente de los text box al DGV
+             //*   dgv_Productos.Rows.Add(NuevoProd.p_codigo.ToString(), NuevoProd.p_descripcion.ToString(), NuevoProd.p_stock.ToString());
+             //*   Fila = (dgv_Productos.Rows.Count - 1);
+                nuevo = true;
+                LlenarDGV();
+            }
         }
 
       
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (nuevo == true)
+           if (nuevo == true)
             {
                 if (rb_Ingreso.Checked == true)
                 {
@@ -103,6 +139,11 @@ namespace WindFormProductos
         }
 
         private void tabC_Productos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormularioProductos_Load(object sender, EventArgs e)
         {
 
         }

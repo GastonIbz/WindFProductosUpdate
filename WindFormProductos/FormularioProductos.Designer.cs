@@ -30,6 +30,14 @@ namespace WindFormProductos
         private void InitializeComponent()
         {
             this.tabC_Productos = new System.Windows.Forms.TabControl();
+            this.SelectTab = new System.Windows.Forms.TabPage();
+            this.btnCargar = new System.Windows.Forms.Button();
+            this.txtStock = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.lblStock = new System.Windows.Forms.Label();
+            this.lblDescripcion = new System.Windows.Forms.Label();
+            this.lblCodigo = new System.Windows.Forms.Label();
             this.tabP_Movimiento = new System.Windows.Forms.TabPage();
             this.rb_Egreso = new System.Windows.Forms.RadioButton();
             this.rb_Ingreso = new System.Windows.Forms.RadioButton();
@@ -40,18 +48,10 @@ namespace WindFormProductos
             this.lblDescripMov = new System.Windows.Forms.Label();
             this.lblCodigoMov = new System.Windows.Forms.Label();
             this.dgv_Productos = new System.Windows.Forms.DataGridView();
-            this.lblCodigo = new System.Windows.Forms.Label();
-            this.lblDescripcion = new System.Windows.Forms.Label();
-            this.lblStock = new System.Windows.Forms.Label();
-            this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.txtStock = new System.Windows.Forms.TextBox();
-            this.btnCargar = new System.Windows.Forms.Button();
-            this.SelectTab = new System.Windows.Forms.TabPage();
             this.tabC_Productos.SuspendLayout();
+            this.SelectTab.SuspendLayout();
             this.tabP_Movimiento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Productos)).BeginInit();
-            this.SelectTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabC_Productos
@@ -64,6 +64,84 @@ namespace WindFormProductos
             this.tabC_Productos.Size = new System.Drawing.Size(653, 277);
             this.tabC_Productos.TabIndex = 0;
             this.tabC_Productos.SelectedIndexChanged += new System.EventHandler(this.tabC_Productos_SelectedIndexChanged);
+            // 
+            // SelectTab
+            // 
+            this.SelectTab.Controls.Add(this.btnCargar);
+            this.SelectTab.Controls.Add(this.txtStock);
+            this.SelectTab.Controls.Add(this.txtDescripcion);
+            this.SelectTab.Controls.Add(this.txtCodigo);
+            this.SelectTab.Controls.Add(this.lblStock);
+            this.SelectTab.Controls.Add(this.lblDescripcion);
+            this.SelectTab.Controls.Add(this.lblCodigo);
+            this.SelectTab.Location = new System.Drawing.Point(4, 22);
+            this.SelectTab.Name = "SelectTab";
+            this.SelectTab.Padding = new System.Windows.Forms.Padding(3);
+            this.SelectTab.Size = new System.Drawing.Size(645, 251);
+            this.SelectTab.TabIndex = 0;
+            this.SelectTab.Text = "Carga de Productos";
+            this.SelectTab.UseVisualStyleBackColor = true;
+            // 
+            // btnCargar
+            // 
+            this.btnCargar.Location = new System.Drawing.Point(548, 200);
+            this.btnCargar.Name = "btnCargar";
+            this.btnCargar.Size = new System.Drawing.Size(75, 23);
+            this.btnCargar.TabIndex = 6;
+            this.btnCargar.Text = "Cargar";
+            this.btnCargar.UseVisualStyleBackColor = true;
+            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
+            // 
+            // txtStock
+            // 
+            this.txtStock.Location = new System.Drawing.Point(258, 146);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(278, 20);
+            this.txtStock.TabIndex = 5;
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(258, 101);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(278, 20);
+            this.txtDescripcion.TabIndex = 4;
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Location = new System.Drawing.Point(258, 59);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(278, 20);
+            this.txtCodigo.TabIndex = 3;
+            // 
+            // lblStock
+            // 
+            this.lblStock.AutoSize = true;
+            this.lblStock.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStock.Location = new System.Drawing.Point(197, 146);
+            this.lblStock.Name = "lblStock";
+            this.lblStock.Size = new System.Drawing.Size(55, 19);
+            this.lblStock.TabIndex = 2;
+            this.lblStock.Text = "Stock :";
+            // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcion.Location = new System.Drawing.Point(156, 102);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(96, 19);
+            this.lblDescripcion.TabIndex = 1;
+            this.lblDescripcion.Text = "Descripción :";
+            // 
+            // lblCodigo
+            // 
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigo.Location = new System.Drawing.Point(188, 59);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(64, 19);
+            this.lblCodigo.TabIndex = 0;
+            this.lblCodigo.Text = "Código :";
             // 
             // tabP_Movimiento
             // 
@@ -171,84 +249,6 @@ namespace WindFormProductos
             this.dgv_Productos.TabIndex = 0;
             this.dgv_Productos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Productos_CellClick);
             // 
-            // lblCodigo
-            // 
-            this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigo.Location = new System.Drawing.Point(188, 59);
-            this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(64, 19);
-            this.lblCodigo.TabIndex = 0;
-            this.lblCodigo.Text = "Código :";
-            // 
-            // lblDescripcion
-            // 
-            this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(156, 102);
-            this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(96, 19);
-            this.lblDescripcion.TabIndex = 1;
-            this.lblDescripcion.Text = "Descripción :";
-            // 
-            // lblStock
-            // 
-            this.lblStock.AutoSize = true;
-            this.lblStock.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStock.Location = new System.Drawing.Point(197, 146);
-            this.lblStock.Name = "lblStock";
-            this.lblStock.Size = new System.Drawing.Size(55, 19);
-            this.lblStock.TabIndex = 2;
-            this.lblStock.Text = "Stock :";
-            // 
-            // txtCodigo
-            // 
-            this.txtCodigo.Location = new System.Drawing.Point(258, 59);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(278, 20);
-            this.txtCodigo.TabIndex = 3;
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Location = new System.Drawing.Point(258, 101);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(278, 20);
-            this.txtDescripcion.TabIndex = 4;
-            // 
-            // txtStock
-            // 
-            this.txtStock.Location = new System.Drawing.Point(258, 146);
-            this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(278, 20);
-            this.txtStock.TabIndex = 5;
-            // 
-            // btnCargar
-            // 
-            this.btnCargar.Location = new System.Drawing.Point(548, 200);
-            this.btnCargar.Name = "btnCargar";
-            this.btnCargar.Size = new System.Drawing.Size(75, 23);
-            this.btnCargar.TabIndex = 6;
-            this.btnCargar.Text = "Cargar";
-            this.btnCargar.UseVisualStyleBackColor = true;
-            this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
-            // 
-            // SelectTab
-            // 
-            this.SelectTab.Controls.Add(this.btnCargar);
-            this.SelectTab.Controls.Add(this.txtStock);
-            this.SelectTab.Controls.Add(this.txtDescripcion);
-            this.SelectTab.Controls.Add(this.txtCodigo);
-            this.SelectTab.Controls.Add(this.lblStock);
-            this.SelectTab.Controls.Add(this.lblDescripcion);
-            this.SelectTab.Controls.Add(this.lblCodigo);
-            this.SelectTab.Location = new System.Drawing.Point(4, 22);
-            this.SelectTab.Name = "SelectTab";
-            this.SelectTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SelectTab.Size = new System.Drawing.Size(645, 251);
-            this.SelectTab.TabIndex = 0;
-            this.SelectTab.Text = "Carga de Productos";
-            this.SelectTab.UseVisualStyleBackColor = true;
-            // 
             // FormularioProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,12 +259,13 @@ namespace WindFormProductos
             this.Controls.Add(this.tabC_Productos);
             this.Name = "FormularioProductos";
             this.Text = "FormularioProductos";
+            this.Load += new System.EventHandler(this.FormularioProductos_Load);
             this.tabC_Productos.ResumeLayout(false);
+            this.SelectTab.ResumeLayout(false);
+            this.SelectTab.PerformLayout();
             this.tabP_Movimiento.ResumeLayout(false);
             this.tabP_Movimiento.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Productos)).EndInit();
-            this.SelectTab.ResumeLayout(false);
-            this.SelectTab.PerformLayout();
             this.ResumeLayout(false);
 
         }

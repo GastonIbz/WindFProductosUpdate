@@ -12,7 +12,7 @@ namespace CapaDatos
     public class AdministracionProductos : DatosConexion
     {
      
-        public int abmProducto(string accion, Producto objetoProducto)
+        public int abmProducto(string accion, Producto objetoProducto) 
         {
             int resultado = -1;
             string orden = string.Empty;  
@@ -44,7 +44,7 @@ namespace CapaDatos
             return resultado;
         }
 
-        public DataSet ListadoProductos(string list)
+        public DataSet ListadoProducto(string list)
         {
             string orden = string.Empty;
             if (list != "Todos")

@@ -80,6 +80,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CapaDato\CapaDatos.csproj">
+      <Project>{48064a91-9dfd-493d-b078-7dc9e199d39b}</Project>
+      <Name>CapaDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaNegocios\CapaNegocio.csproj">
+      <Project>{4f4f7a14-20b2-4103-8d2f-9b89a29bea9b}</Project>
+      <Name>CapaNegocio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
       <Project>{c6b509fb-9d7c-4b97-8011-87ac28d0c600}</Project>
       <Name>Entidades</Name>

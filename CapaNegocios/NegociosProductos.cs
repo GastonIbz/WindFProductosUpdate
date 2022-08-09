@@ -9,7 +9,18 @@ using Entidades;
 
 namespace CapaNegocios
 {
-    public class NegociosProductos
+    public class NegocioProductos
     {
+        AdministracionProductos DatosObjProducto = new AdministracionProductos();
+
+        public int abmProductos(string accion, Producto ObjProducto)
+        {
+            return DatosObjProducto.abmProducto(accion, ObjProducto);
+        }
+        public DataSet listadoProductos(string cual)
+        {
+            return DatosObjProducto.ListadoProducto(cual);
+            
+    }
     }
 }
