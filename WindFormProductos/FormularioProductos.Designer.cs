@@ -63,7 +63,7 @@ namespace WindFormProductos
             this.tabC_Productos.SelectedIndex = 0;
             this.tabC_Productos.Size = new System.Drawing.Size(653, 277);
             this.tabC_Productos.TabIndex = 0;
-            this.tabC_Productos.SelectedIndexChanged += new System.EventHandler(this.tabC_Productos_SelectedIndexChanged);
+           
             // 
             // SelectTab
             // 
@@ -247,7 +247,7 @@ namespace WindFormProductos
             this.dgv_Productos.Name = "dgv_Productos";
             this.dgv_Productos.Size = new System.Drawing.Size(653, 252);
             this.dgv_Productos.TabIndex = 0;
-            this.dgv_Productos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Productos_CellClick);
+           
             // 
             // FormularioProductos
             // 
@@ -259,7 +259,7 @@ namespace WindFormProductos
             this.Controls.Add(this.tabC_Productos);
             this.Name = "FormularioProductos";
             this.Text = "FormularioProductos";
-            this.Load += new System.EventHandler(this.FormularioProductos_Load);
+  
             this.tabC_Productos.ResumeLayout(false);
             this.SelectTab.ResumeLayout(false);
             this.SelectTab.PerformLayout();

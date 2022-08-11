@@ -55,15 +55,18 @@ namespace WindFormProductos
             dgv_Productos.Columns[0].Width = 170;
             dgv_Productos.Columns[1].Width = 320;
             dgv_Productos.Columns[2].Width = 120;
-        }    
- 
+        }
+
         // Instanciamos utilizando constructor con parametros / Mostrar datos ingresados en Mov.Productos
         private void btnCargar_Click(object sender, EventArgs e)
         {
             int nGrabados = -1;
-          
+
+            // NuevoProd = new Producto(int.Parse(txtCodigo.Text), txtDescripcion.Text);
+            // nGrabados = objNegocioProducto.abmProductos("Alta", NuevoProd);
             NuevoProd = new Producto(int.Parse(txtCodigo.Text), txtDescripcion.Text);
             nGrabados = objNegocioProducto.abmProductos("Alta", NuevoProd);
+
             if (nGrabados == -1)
             {
                 MessageBox.Show("No se pudo grabar el producto en el sistema");
@@ -81,71 +84,104 @@ namespace WindFormProductos
                 MessageBox.Show("Producto Instanciado");
 
                 // Agregar al DGV - Ya no se manda directamente de los text box al DGV
-             //*   dgv_Productos.Rows.Add(NuevoProd.p_codigo.ToString(), NuevoProd.p_descripcion.ToString(), NuevoProd.p_stock.ToString());
-             //*   Fila = (dgv_Productos.Rows.Count - 1);
+                //*   dgv_Productos.Rows.Add(NuevoProd.p_codigo.ToString(), NuevoProd.p_descripcion.ToString(), NuevoProd.p_stock.ToString());
+                //*   Fila = (dgv_Productos.Rows.Count - 1);
                 nuevo = true;
                 LlenarDGV();
             }
         }
 
-      
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-           if (nuevo == true)
+            if (nuevo == false)
+
             {
-                if (rb_Ingreso.Checked == true)
+
+
+                if (nuevo == true)
                 {
-                    NuevoProd.Ingreso(int.Parse(txb_Movim.Text));
+                    if (rb_Ingreso.Checked == true) // Selecciona el Ingreso
+                    {
+                        NuevoProd.Ingreso(int.Parse(txb_Movim.Text));
+                    }
+                    if (rb_Egreso.Checked == true)
+                    {
+                        NuevoProd.Salida(int.Parse(txb_Movim.Text));
+                    }
+                    //  LlevarProductoDgv(NuevoProd, Fila);
+                    int nResultado = -1;
+                    nResultado = objNegocioProducto.abmProductos("Modificar", ProdExistente);
+                    if (nResultado != -1) {
+                        LlenarDGV();
+                    }
+                    else
+
+                        MessageBox.Show("Se produjo un error al intentar modificar el producto");
+
                 }
-                if (rb_Egreso.Checked == true)
+                else
                 {
-                    NuevoProd.Salida(int.Parse(txb_Movim.Text));
+                    if (rb_Ingreso.Checked == true)
+                    {
+                        ProdExistente.Ingreso(int.Parse(txb_Movim.Text));
+
+                    }
+                    if (rb_Egreso.Checked == true)
+                    {
+                        ProdExistente.Salida(int.Parse(txb_Movim.Text));
+                    }
+
+
+
+
+
+
+
+                    // else
+                    //  {
+                    //      if (rb_Ingreso.Checked == true)
+                    //      {
+                    //         ProdExistente.Ingreso(int.Parse(txb_Movim.Text));
+                    //    }
+                    //      if (rb_Egreso.Checked == true)
+                    //   {
+                    //       ProdExistente.Salida(int.Parse(txb_Movim.Text));
+                    //   }
+                    // LlevarProductoDgv(ProdExistente, Fila);
+                    //  }
+                    //    void LlevarProductoDgv(Producto Prod, int lugar)
+                    //   {
+                    //       dgv_Productos[0, lugar].Value = Prod.p_codigo.ToString();
+                    //       dgv_Productos[1, lugar].Value = Prod.p_descripcion;
+                    //       dgv_Productos[2, lugar].Value = Prod.p_stock.ToString();
+                    //   }
+
+              //  }ERRORRRRRRRRR
+
+              //  private void dgv_Productos_CellClick(object sender, DataGridViewCellEventArgs e)
+              //  {
+               //     ProdExistente = new Producto(Convert.ToInt32(dgv_Productos.CurrentRow.Cells[0].Value),
+                //                   dgv_Productos.CurrentRow.Cells[1].Value.ToString(),
+                  //               Convert.ToInt32(dgv_Productos.CurrentRow.Cells[2].Value));
+
+                //    DataSet Dset = new DataSet();
+
+
+               //     Dset = objNegocioProducto.listadoProductos(ProdExistente.p_codigo.ToString()); // Busca un producto en particular
+               //     if (Dset.Tables[0].Rows.Count > 0)
+               //     {
+               //         Dset_a_Controles(Dset);
+               //     }
+              //  }
+
+           //     private void Dset_a_Controles(DataSet dSet)
+             //   {
+           //         lblCodigoMov.Text = dSet.Tables[0].Rows[0]["Codigo"].ToString();
+            //        lblDescripMov.Text = lblCodigoMov.Text = dSet.Tables[0].Rows[0]["Descripcion"].ToString();
+            //        lblStockmov.Text = "Hay" + dSet.Tables[0].Rows[0]["Stock"].ToString() + "Unidades";
                 }
-                LlevarProductoDgv(NuevoProd, Fila);
             }
-            else
-            {
-                if (rb_Ingreso.Checked == true)
-                {
-                    ProdExistente.Ingreso(int.Parse(txb_Movim.Text));
-                }
-                if (rb_Egreso.Checked == true)
-                {
-                    ProdExistente.Salida(int.Parse(txb_Movim.Text));
-                }
-                LlevarProductoDgv(ProdExistente, Fila);
-            }
-            void LlevarProductoDgv(Producto Prod, int lugar)
-            {
-                dgv_Productos[0, lugar].Value = Prod.p_codigo.ToString();
-                dgv_Productos[1, lugar].Value = Prod.p_descripcion;
-                dgv_Productos[2, lugar].Value = Prod.p_stock.ToString();
-            }
-
-        }
-
-        private void dgv_Productos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            ProdExistente = new  Producto(Convert.ToInt32(dgv_Productos.CurrentRow.Cells[0].Value),
-                          dgv_Productos.CurrentRow.Cells[1].Value.ToString(),
-                          Convert.ToInt32(dgv_Productos.CurrentRow.Cells[2].Value));
-
-            lblCodigoMov.Text = ProdExistente.p_codigo.ToString();
-            lblDescripMov.Text = ProdExistente.p_descripcion;
-            lblStockmov.Text = "Hay " + ProdExistente.p_stock.ToString() + " Unidades";
-            txb_Movim.Clear();
-            Fila = e.RowIndex;
-            nuevo = false;
-        }
-
-        private void tabC_Productos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FormularioProductos_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
